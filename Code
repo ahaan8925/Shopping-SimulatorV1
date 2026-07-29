@@ -1,0 +1,43 @@
+def add_item(cart): 
+    item = input("What item would you like to add: ") 
+    cart.append(item) 
+    print("\n" + item + " has been added to your shopping cart!") 
+
+def reading_cart(cart): 
+    if len(cart) == 0: 
+        print("\nThe Shopping Cart is currently empty") 
+    else: 
+        print("\nYour Shopping Cart includes:") 
+        for i in range(len(cart)): 
+            print(str(i+1) + ": ", cart[i]) 
+
+def delete_item(cart): 
+    reading_cart(cart) 
+    if len(cart) > 0: 
+        select_item_no = int(input("Which item would you like to delete?: ")) 
+        del_item = select_item_no - 1 
+        if del_item < 0 or del_item >= len(cart): 
+            print("\nInvalid. Enter an integer between 1 and " + str(len(cart)) + ":") 
+        else: 
+            old_item = cart[del_item] 
+            del cart[del_item] 
+            print("\nYou have successfully deleted", old_item) 
+
+run_flag = True 
+shopping_cart = [] 
+
+while run_flag: 
+    user_input = input("\nMain Menu:\nC: Create an Item\nR: Read/Display your cart\nD: Delete an Item\nE: Exit the Program\nWhat would you like to do?: ") 
+    
+    
+    if user_input.upper() == "C": 
+        add_item(shopping_cart) 
+    elif user_input.upper() == "R": 
+        reading_cart(shopping_cart) 
+    elif user_input.upper() == "D": 
+        delete_item(shopping_cart) 
+    elif user_input.upper() == "E": 
+        print("Goodbye!") 
+        run_flag = False 
+    else: 
+        print("Invalid input, please try again")
